@@ -3,6 +3,7 @@ import Image from "next/image";
 import { styles } from "@/app/styles/style";
 import ReviewCard from "../Review/ReviewCard";
 import { useTheme } from "next-themes";
+import businessImg from "../../../public/assests/iqryaifqyig1v8glifrj.webp";
 
 export const reviews = [
   {
@@ -56,12 +57,7 @@ const Reviews = () => {
     <div className="w-[90%] md:w-[85%] m-auto">
       <div className="w-full md:flex items-center">
         <div className="md:w-[50%] w-full mb-5">
-          <Image
-            src={require("../../../public/assests/iqryaifqyig1v8glifrj.webp")}
-            alt="business"
-            width={450}
-            height={400}
-          />
+          <Image src={businessImg} alt="business" width={450} height={400} />
         </div>
         <div className="md:w-[50%] w-full">
           <h3 className={`${styles.title} md:!text-[40px]`}>
