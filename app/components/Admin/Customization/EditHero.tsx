@@ -4,13 +4,11 @@ import {
   useGetHeroDataQuery,
 } from "@/redux/features/layout/layoutApi";
 import { useTheme } from "next-themes";
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineCamera } from "react-icons/ai";
 
-type Props = {};
-
-const EditHero: FC<Props> = () => {
+const EditHero = () => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");

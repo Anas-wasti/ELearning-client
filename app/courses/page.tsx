@@ -10,9 +10,7 @@ import Heading from "../utils/Heading";
 import Header from "../components/Header";
 import Loader from "../components/Loader/Loader";
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page = () => {
   const searchParams = useSearchParams();
   const search = searchParams?.get("title");
 

@@ -3,9 +3,7 @@ import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import CourseCard from "../Course/CourseCard";
 
-type Props = {};
-
-const Courses = (props: Props) => {
+const Courses = () => {
   const { data, isLoading } = useGetUsersAllCoursesQuery({});
   const [courses, setCourses] = useState<any[]>([]);
 

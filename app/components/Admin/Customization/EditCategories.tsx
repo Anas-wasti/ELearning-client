@@ -10,9 +10,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import toast from "react-hot-toast";
 import { useTheme } from "next-themes";
 
-type Props = {};
-
-const EditCategories = (props: Props) => {
+const EditCategories = () => {
   const { data, isLoading, refetch } = useGetHeroDataQuery("Categories", {
     refetchOnMountOrArgChange: true,
   });

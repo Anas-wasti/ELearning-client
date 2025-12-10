@@ -4,8 +4,6 @@ import { styles } from "@/app/styles/style";
 import ReviewCard from "../Review/ReviewCard";
 import { useTheme } from "next-themes";
 
-type Props = {};
-
 export const reviews = [
   {
     name: "Gene Bates",
@@ -51,7 +49,7 @@ export const reviews = [
   },
 ];
 
-const Reviews = (props: Props) => {
+const Reviews = () => {
   const { theme } = useTheme();
 
   return (

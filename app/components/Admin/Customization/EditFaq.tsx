@@ -11,9 +11,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { useTheme } from "next-themes";
 
-type Props = {};
-
-const EditFaq = (props: Props) => {
+const EditFaq = () => {
   const { data, isLoading } = useGetHeroDataQuery("FAQ", {
     refetchOnMountOrArgChange: true,
   });

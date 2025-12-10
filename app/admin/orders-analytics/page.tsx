@@ -5,9 +5,7 @@ import AdminSidebar from "@/app/components/Admin/sidebar/AdminSidebar";
 import Heading from "@/app/utils/Heading";
 import OrdersAnalytics from "../../components/Admin/Analytics/OrdersAnalytics";
 
-type Props = {};
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <Heading

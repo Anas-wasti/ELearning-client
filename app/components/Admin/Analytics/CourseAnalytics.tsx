@@ -12,9 +12,7 @@ import Loader from "../../Loader/Loader";
 import { styles } from "@/app/styles/style";
 import { useGetCourseAnalyticsQuery } from "@/redux/features/analytics/analyticsApi";
 
-type Props = {};
-
-const CourseAnalytics = (props: Props) => {
+const CourseAnalytics = () => {
   const { data, isLoading } = useGetCourseAnalyticsQuery({});
 
   //   const analyticsData = [

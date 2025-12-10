@@ -2,9 +2,7 @@ import React from "react";
 import { styles } from "../styles/style";
 import { useTheme } from "next-themes";
 
-type Props = {};
-
-const Policy = (props: Props) => {
+const Policy = () => {
   const { theme } = useTheme();
 
   return (

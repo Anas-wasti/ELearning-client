@@ -5,9 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Policy from "./Policy";
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page = () => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(3);
   const [route, setRoute] = useState("Login");

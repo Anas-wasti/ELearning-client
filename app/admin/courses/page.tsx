@@ -6,9 +6,7 @@ import Heading from "@/app/utils/Heading";
 import React from "react";
 import AllCourses from "../../components/Admin/Course/AllCourses";
 
-type Props = {};
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <AdminProtected>
