@@ -123,7 +123,7 @@ const CreateCourse = () => {
             setActive={setActive}
           />
         )}
-
+ 
         {active === 1 && (
           <CourseData
             benefits={benefits}
