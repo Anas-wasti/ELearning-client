@@ -27,16 +27,27 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     useUpdateNotificationStatusMutation();
   const [notifications, setNotifications] = useState<any>();
 
-  const [audio] = useState(
-    new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-  );
+  // Client-safe Audio
+  const [audio, setAudio] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof Audio !== "undefined") {
+      setAudio(
+        new Audio(
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        )
+      );
+    }
+  }, []);
 
   const { theme } = useTheme();
 
   const playNotificationSound = () => {
-    audio.play().catch((err) => {
-      console.log("Audio play prevented:", err);
-    });
+    if (audio) {
+      audio.play().catch((err) => {
+        console.log("Audio play prevented:", err);
+      });
+    }
   };
 
   useEffect(() => {
@@ -48,8 +59,8 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (isSuccess) {
       refetch();
     }
-    audio.load();
-  }, [data, isSuccess]);
+    if (audio) audio.load();
+  }, [data, isSuccess, audio]);
 
   useEffect(() => {
     socketId.on("newNotification", (data) => {
@@ -57,7 +68,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
       refetch();
       playNotificationSound();
     });
-  }, []);
+  }, [audio, refetch]);
 
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);
