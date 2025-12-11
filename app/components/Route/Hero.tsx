@@ -29,7 +29,9 @@ const Hero: FC = () => {
       ) : (
         <div
           className={`w-full flex flex-col z-10 lg:flex-row items-center justify-between px-4 pb-20 lg:px-16 pt-[100px] gap-10 lg:gap-20 transition duration-300 ${
-            theme === "dark" ? "bg-[#00000013] text-white" : "bg-white text-black"
+            theme === "dark"
+              ? "bg-[#00000013] text-white"
+              : "bg-white text-black"
           }`}
         >
           {/* Left Side - Hero Image in Blue Circle */}
@@ -120,7 +122,7 @@ const Hero: FC = () => {
                   500K+ people already trusted us.
                   <Link
                     href="/courses"
-                    className={`ml-2 text-[crimson] ${
+                    className={`ml-2 ${
                       theme === "dark" ? "text-[#4cce5b]" : "text-[crimson]"
                     }`}
                   >
