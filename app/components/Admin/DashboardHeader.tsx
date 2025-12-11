@@ -11,6 +11,7 @@ import socketIO from "socket.io-client";
 import { format } from "timeago.js";
 
 const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL || "";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 type Props = {
   open?: boolean;
@@ -26,19 +27,19 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     useUpdateNotificationStatusMutation();
   const [notifications, setNotifications] = useState<any>();
 
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [audio] = useState(
+    new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+  );
 
   const { theme } = useTheme();
 
-  
+  const playNotificationSound = () => {
+    audio.play().catch((err) => {
+      console.log("Audio play prevented:", err);
+    });
+  };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // create audio only on client
-      const a = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-      setAudio(a);
-    }
-
     if (data) {
       setNotifications(
         data.notifications.filter((item: any) => item.status === "unread")
@@ -47,34 +48,16 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
     if (isSuccess) {
       refetch();
     }
-  }, [data, isSuccess, refetch]);
+    audio.load();
+  }, [data, isSuccess]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const socket = socketIO(ENDPOINT, { transports: ["websocket"] });
-
-    const handler = (d: any) => {
-      console.log("New notification received:", d);
+    socketId.on("newNotification", (data) => {
+      console.log("New notification received:", data);
       refetch();
-      if (audio) {
-        audio.play().catch(() => {
-          /* ignore play errors */
-        });
-      }
-    };
-
-    socket.on("newNotification", handler);
-
-    return () => {
-      socket.off("newNotification", handler);
-      try {
-        socket.disconnect();
-      } catch {
-        // ignore
-      }
-    };
-  }, [refetch, audio]);
+      playNotificationSound();
+    });
+  }, []);
 
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);

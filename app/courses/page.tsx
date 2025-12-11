@@ -1,8 +1,8 @@
 "use client";
+import React, { useEffect, useState, Suspense } from "react";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import CourseCard from "../components/Course/CourseCard";
 import { styles } from "../styles/style";
@@ -10,7 +10,7 @@ import Heading from "../utils/Heading";
 import Header from "../components/Header";
 import Loader from "../components/Loader/Loader";
 
-const Page = () => {
+const PageContent = () => {
   const searchParams = useSearchParams();
   const search = searchParams?.get("title");
 
@@ -116,6 +116,14 @@ const Page = () => {
         </>
       )}
     </div>
+  );
+};
+
+const Page = () => {
+  return (
+    <Suspense fallback={<Loader />}>
+      <PageContent />
+    </Suspense>
   );
 };
 
